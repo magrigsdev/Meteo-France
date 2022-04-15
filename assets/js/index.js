@@ -18,7 +18,7 @@ fetch(region)
       Response.json().then((data) => {
         for (let index = 0; index < data.length; index++) {
           const element = data[index];
-
+          
           //creation de element;
           let region = document.createElement("option");
 
@@ -38,19 +38,26 @@ fetch(region)
           laRegion["nom"] = region.value;
           laRegion["code"] = code_region;
 
-          
+          //console.log(laRegion["nom"]);
         } //end of region fetching
         //mon test
-        //console.log(regions);
-        
-        regions.addEventListener("change", ()=>{
-            //console.log(regions.value);
+        //regions.value
+        laRegion = data
 
-            let maRegion = regions.value;
-            console.log(maRegion);
-            
+        regions.addEventListener("change", () => {
+            // console.log(regions.value);
+            // console.log(laRegion);
+            for (let index = 0; index < laRegion.length; index++) {
+              const element = laRegion[index];
+              //console.log(element.nom);
+              if (element.nom === regions.value){
+                console.log(element.nom);
+                console.log(element.code);
+              }
 
-        })
+            }
+
+        });
 
         //end test
 
@@ -86,6 +93,20 @@ fetch(region)
       
 
       //return tabDepart;
+  }
+
+  function RegionAll(maRegion, Regions) {
+    let monObect = {}
+    for (let index = 0; index < Regions.length; index++) {
+      let element = Regions[index];
+
+      if (maRegion == element.nom){
+          monObect[nom] = element.nom;
+          monObect[code] = element.code;
+         
+      }
+    }
+    console.log(monObect); 
   }
   
  
