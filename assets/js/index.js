@@ -3,7 +3,7 @@ const departement =
   "https://geo.api.gouv.fr/departements";
 //https://geo.api.gouv.fr/departements?nom=Yvelines&limit=5
 let regions = document.querySelector(".container .row .col-4 #regions"); 
-let code_region ="", region_value= "";
+let code_region ="", region_nom= "";
 let laRegion = {}
 //DEPARTEMENTS VARIABLES
 let departs = {}
@@ -31,12 +31,12 @@ fetch(region)
           //add the child to parent
           regions.appendChild(region);
 
-          //value
-          region_value = region.value;
+          // //value
+          // region_value = region.value;
 
-          //adding
-          laRegion["nom"] = region.value;
-          laRegion["code"] = code_region;
+          // //adding
+          // laRegion["nom"] = region.value;
+          // laRegion["code"] = code_region;
 
           //console.log(laRegion["nom"]);
         } //end of region fetching
@@ -47,17 +47,24 @@ fetch(region)
         regions.addEventListener("change", () => {
             // console.log(regions.value);
             // console.log(laRegion);
+            
+
             for (let index = 0; index < laRegion.length; index++) {
               const element = laRegion[index];
+
               //console.log(element.nom);
               if (element.nom === regions.value){
-                console.log(element.nom);
-                console.log(element.code);
+                code_region = element.code
+                region_nom = element.nom;
               }
-
             }
+            console.log(code_region, region_nom);
+            //instruction 
+            
 
         });
+        
+        
 
         //end test
 
@@ -95,19 +102,7 @@ fetch(region)
       //return tabDepart;
   }
 
-  function RegionAll(maRegion, Regions) {
-    let monObect = {}
-    for (let index = 0; index < Regions.length; index++) {
-      let element = Regions[index];
-
-      if (maRegion == element.nom){
-          monObect[nom] = element.nom;
-          monObect[code] = element.code;
-         
-      }
-    }
-    console.log(monObect); 
-  }
+ 
   
  
   
